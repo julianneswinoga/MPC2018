@@ -10,11 +10,20 @@ for i in range(len(sl)):
             a = sl[i]
             b = sl[j]
             c = sl[k]
+            if a+b < c:
+                continue
+            elif a==b==c:
+                ac += 1
+                continue
             try:
                 C = math.acos((c**2 - a**2 - b**2)/(-2*a*b))
+                if C == math.pi or C < 0.0001:
+                    continue
                 B = math.asin((b*math.sin(C))/c)
+                if B == math.pi or C < 0.0001:
+                    continue
                 A = (math.pi)-B-C
-                if A < 0.0001 or B < 0.0001 or C < 0.0001:
+                if B == math.pi or C < 0.0001:
                     continue
                 if math.pi/2 in [A, B, C]:
                     ra += 1
